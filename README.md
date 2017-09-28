@@ -8,8 +8,18 @@ The `sievetrend` repository is available for download as an `R` package and may 
 devtools::install_github("benkeser/sievetrend")
 ```
 
-    ## Skipping install of 'sievetrend' from a github remote, the SHA1 (1ed3572e) has not changed since last install.
-    ##   Use `force = TRUE` to force installation
+    ## Downloading GitHub repo benkeser/sievetrend@master
+    ## from URL https://api.github.com/repos/benkeser/sievetrend/zipball/master
+
+    ## Installing sievetrend
+
+    ## '/Library/Frameworks/R.framework/Resources/bin/R' --no-site-file  \
+    ##   --no-environ --no-save --no-restore --quiet CMD INSTALL  \
+    ##   '/private/var/folders/9d/nqhs6v950v39sthl1pljm6s40000gp/T/RtmpoSwAio/devtools19bb729b17e/benkeser-sievetrend-ff4f5b2'  \
+    ##   --library='/Library/Frameworks/R.framework/Versions/3.4/Resources/library'  \
+    ##   --install-tests
+
+    ## 
 
 ``` r
 library(sievetrend)
@@ -62,36 +72,9 @@ trend <- trend_test(object)
 trend
 ```
 
-    ## $alpha
-    ## [1] 1.09257
-    ## 
-    ## $beta
-    ## [1] -0.2540477
-    ## 
-    ## $R
-    ##            [,1]
-    ## [1,]  2.2516861
-    ## [2,]  0.8261786
-    ## [3,]  0.3782459
-    ## [4,]  0.6289656
-    ## [5,] -0.2743845
-    ## 
-    ## $se_beta
-    ##           [,1]
-    ## [1,] 0.1183432
-    ## 
-    ## $ci
-    ## [1] -0.48599609 -0.02209928
-    ## 
-    ## $pval
-    ##            [,1]
-    ## [1,] 0.03181694
-    ## 
-    ## $level
-    ## [1] 0.95
-    ## 
-    ## attr(,"class")
-    ## [1] "trend_test"
+    ## Trend in efficacy across failure type levels: 
+    ##     beta lower_95%CI upper_95%CI  pval
+    ## 1 -0.254      -0.486      -0.022 0.032
 
 A numerical approximation of the true value of *β*<sub>0, *n*</sub> may be obtained as follows.
 
@@ -175,33 +158,6 @@ mo_trend <- trend_test(mo_rslt)
 mo_trend
 ```
 
-    ## $alpha
-    ## [1] 0.7862033
-    ## 
-    ## $beta
-    ## [1] -0.02117473
-    ## 
-    ## $R
-    ##           [,1]
-    ## [1,] 0.6360283
-    ## [2,] 0.7872636
-    ## [3,] 0.7420850
-    ## [4,] 0.7487795
-    ## [5,] 0.6749803
-    ## 
-    ## $se_beta
-    ##           [,1]
-    ## [1,] 0.4564919
-    ## 
-    ## $ci
-    ## [1] -0.9158824  0.8735329
-    ## 
-    ## $pval
-    ##           [,1]
-    ## [1,] 0.9630028
-    ## 
-    ## $level
-    ## [1] 0.95
-    ## 
-    ## attr(,"class")
-    ## [1] "trend_test"
+    ## Trend in efficacy across failure type levels: 
+    ##     beta lower_95%CI upper_95%CI  pval
+    ## 1 -0.021      -0.916       0.874 0.963
