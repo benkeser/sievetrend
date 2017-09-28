@@ -164,7 +164,7 @@ grad_h <- function(F, D, j_vec){
   nabla_g <- grad_g(F)
   Upsilon_n <- nabla_g %*% cov(D) %*% t(nabla_g) 
   # design matrix
-  X <- cbind(rep(1,nlength(j_vec)), j_vec)
+  X <- cbind(rep(1,length(j_vec)), j_vec)
   Upsilon_inv <- solve(Upsilon_n)
   S_n <- solve(t(X)%*%Upsilon_inv%*%X)%*%t(X)%*%Upsilon_inv
   tmp <- (-1)^(2:(length(F)+1)) * (1 / F)
