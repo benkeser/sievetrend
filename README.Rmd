@@ -17,7 +17,7 @@ knitr::opts_chunk$set(echo = TRUE)
 The `sievetrend` repository is available for download as an `R` package and may be
 downloaded directly from GitHub as follows. 
 
-```{r, messages = FALSE}
+```{r, messages = FALSE, warnings = FALSE}
 # install sievetrend from GitHub
 devtools::install_github("benkeser/sievetrend")
 library(sievetrend)

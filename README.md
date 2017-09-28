@@ -8,7 +8,7 @@ The `sievetrend` repository is available for download as an `R` package and may 
 devtools::install_github("benkeser/sievetrend")
 ```
 
-    ## Skipping install of 'sievetrend' from a github remote, the SHA1 (4cecd2ab) has not changed since last install.
+    ## Skipping install of 'sievetrend' from a github remote, the SHA1 (1ed3572e) has not changed since last install.
     ##   Use `force = TRUE` to force installation
 
 ``` r
@@ -58,7 +58,8 @@ object <- survtmle(ftime = dat$ftime,
                   t0=6)
 
 # call trend_test to estimate projection
-(trend <- trend_test(object))
+trend <- trend_test(object)
+trend
 ```
 
     ## $alpha
@@ -170,7 +171,8 @@ We can use the `getMO` function to obtain the averaged cumulative incidence resu
 mo_rslt <- getMO(rslt)
 
 # apply trend test
-(mo_trend <- trend_test(mo_rslt))
+mo_trend <- trend_test(mo_rslt)
+mo_trend
 ```
 
     ## $alpha
