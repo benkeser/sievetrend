@@ -283,7 +283,7 @@ getMO <- function(rslt){
     est_matrix <- Reduce(cbind, lapply(rslt, "[[", "est"))
 
     # MO estimates
-    est <- rowMeans(est_matrix)
+    est <- data.frame(est = rowMeans(est_matrix))
 
 	# MO influence functions
     ic <- Reduce("+", lapply(rslt, "[[", "ic"))/M
