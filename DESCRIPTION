@@ -1,0 +1,21 @@
+Package: sievetrend
+Title: Tests for trends in vaccine sieve analysis
+Version: 1.0.0
+Authors@R: person("David", "Benkeser", role = c("aut", "cre", "cph"),
+                  email = "benkeser@emory.edu")
+Description: Estimate trends in vaccine efficacy by genetic distance (Benkeser, Juraska, and Gilbert, 2017 (to appear)).
+Depends:
+    R (>= 3.0.0)
+Imports:
+    survtmle
+Suggests:
+    testthat,
+    knitr,
+    rmarkdown,
+License: MIT + file LICENSE
+URL: https://github.com/benkeser/sieve_trend
+BugReports: https://github.com/benkeser/sieve_trend/issues
+Encoding: UTF-8
+LazyData: true
+VignetteBuilder: knitr
+RoxygenNote: 6.0.1
