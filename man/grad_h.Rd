@@ -4,7 +4,7 @@
 \alias{grad_h}
 \title{Helper function to compute gradient of trend parameter function.}
 \usage{
-grad_h(F, D)
+grad_h(F, D, j_vec)
 }
 \arguments{
 \item{F}{A vector of cumulative incidence estimates with alternating

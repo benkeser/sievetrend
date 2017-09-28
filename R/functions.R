@@ -138,16 +138,15 @@ grad_g <- function(F){
 #' treatment = 0 and treatment = 1 for each type.
 #' @param D A matrix of variance estimates corresponding with the vector 
 #' \code{F}. 
+#' @param j_vec Vector of genetic distances
 
-h <- function(F, D){
+h <- function(F, D, j_vec){
   R_n <- g(F)
   K <- length(F)/2
   nabla_g <- grad_g(F)
   Upsilon_n <- nabla_g %*% cov(D) %*% t(nabla_g)
-  # estimate 
-  j_vec <- (1:5) - 1
   # design matrix
-  X <- cbind(rep(1,5), j_vec)
+  X <- cbind(rep(1,length(j_vec)), j_vec)
   Upsilon_inv <- solve(Upsilon_n)
   S_n <- solve(t(X)%*%Upsilon_inv%*%X)%*%t(X)%*%Upsilon_inv
   S_n %*% R_n
@@ -159,15 +158,13 @@ h <- function(F, D){
 #' @param D A matrix of variance estimates corresponding with the vector 
 #' \code{F}.  
 
-grad_h <- function(F, D){
+grad_h <- function(F, D, j_vec){
   R_n <- g(F)
   K <- length(F)/2
   nabla_g <- grad_g(F)
   Upsilon_n <- nabla_g %*% cov(D) %*% t(nabla_g) 
-  # estimate 
-  j_vec <- (1:5) - 1
   # design matrix
-  X <- cbind(rep(1,5), j_vec)
+  X <- cbind(rep(1,nlength(j_vec)), j_vec)
   Upsilon_inv <- solve(Upsilon_n)
   S_n <- solve(t(X)%*%Upsilon_inv%*%X)%*%t(X)%*%Upsilon_inv
   tmp <- (-1)^(2:(length(F)+1)) * (1 / F)
@@ -201,17 +198,18 @@ trend_test <- function(object, level = 0.95){
 	n <- length(object$ic[[1]])
 	F <- object$est
 	D <- Reduce(cbind, object$ic)
+	j_vec <- unique(as.numeric(unlist(lapply(strsplit(row.names(F), " "),"[[", 2))))
 
 	# log ratios
 	R_n <- g(F)
 
 	# effect estimates
-	est <- h(F, D)
+	est <- h(F, D, j_vec)
 	alpha_n <- est[1]
 	beta_n <- est[2]
 
 	# standard error of effect estimate
-	nabla_h <- grad_h(F, D)
+	nabla_h <- grad_h(F, D, j_vec)
 	se_beta_n <- sqrt(t(nabla_h) %*% cov(D) %*% nabla_h / n)
 
 	# confidence interval
@@ -222,7 +220,7 @@ trend_test <- function(object, level = 0.95){
 
 	# output
 	out <- list(alpha = alpha_n, beta = beta_n, 
-	            L_j = data.frame(j = 0:length(R_n), L_jn = R_n), 
+	            L_j = data.frame(j = 1:length(R_n), L_jn = R_n), 
 	            se_beta = se_beta_n, ci = ci, pval = pval,
 	            level = level)
 	class(out) <- "trend_test"
@@ -233,7 +231,7 @@ trend_test <- function(object, level = 0.95){
 #' @param x An object of class \code{"trend_test"}. 
 #' @param digits Number of digits to round output. 
 #' @param ... Other options (not currently used)
-#' @exportMethod print trend_test
+#' @export
 print.trend_test <- function(x, digits = 3, ...){
 	tmp <- data.frame(beta = round(x$beta, digits),
 	                  ci1 = round(x$ci[1], digits), 

@@ -1,5 +1,5 @@
 Package: sievetrend
-Title: Tests for trends in vaccine sieve analysis
+Title: Tests for trends in vaccine efficacy by genetic distance
 Version: 1.0.0
 Authors@R: person("David", "Benkeser", role = c("aut", "cre", "cph"),
                   email = "benkeser@emory.edu")
