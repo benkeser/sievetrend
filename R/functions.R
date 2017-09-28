@@ -185,8 +185,8 @@ grad_h <- function(F, D){
 #'  \item{\code{alpha}}{The intercept from the projection onto the working model.}
 #' 	\item{\code{beta}}{The slope from the projection onto the working model, i.e., 
 #' 		  the "trend" parameter.}
-#' 	\item{\code{R}}{A vector of the log ratio of cumulative incidences that were 
-#'		  projected onto the working model.}
+#' 	\item{\code{L_j}}{A data.frame showing the log ratio of cumulative incidences 
+#' 		  that were projected onto the working model.}
 #' 	\item{\code{se_beta}}{The influence function-based estimate of the standard 
 #' 		  error of \code{beta_n}.}
 #' 	\item{\code{ci}}{The confidence interval at the requested level for \code{beta_n}.}
@@ -221,7 +221,8 @@ trend_test <- function(object, level = 0.95){
 	pval <- 2 * pnorm(-abs(beta_n / se_beta_n))
 
 	# output
-	out <- list(alpha = alpha_n, beta = beta_n, R = R_n, 
+	out <- list(alpha = alpha_n, beta = beta_n, 
+	            L_j = data.frame(j = 0:length(R_n), L_jn = R_n), 
 	            se_beta = se_beta_n, ci = ci, pval = pval,
 	            level = level)
 	class(out) <- "trend_test"

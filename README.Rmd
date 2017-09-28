@@ -62,7 +62,8 @@ object <- survtmle(ftime = dat$ftime,
                   t0=6)
 
 # call trend_test to estimate projection
-(trend <- trend_test(object))
+trend <- trend_test(object)
+trend
 ```
 
 A numerical approximation of the true value of $\beta_{0,n}$ may be obtained as follows.
@@ -137,6 +138,7 @@ results and apply the trend_test on this scale.
 mo_rslt <- getMO(rslt)
 
 # apply trend test
-(mo_trend <- trend_test(mo_rslt))
+mo_trend <- trend_test(mo_rslt)
+mo_trend
 ```
 

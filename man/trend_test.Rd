@@ -18,8 +18,8 @@ An object of class \code{"trend_test"}.
  \item{\code{alpha}}{The intercept from the projection onto the working model.}
 	\item{\code{beta}}{The slope from the projection onto the working model, i.e., 
 		  the "trend" parameter.}
-	\item{\code{R}}{A vector of the log ratio of cumulative incidences that were 
-	  projected onto the working model.}
+	\item{\code{L_j}}{A data.frame showing the log ratio of cumulative incidences 
+		  that were projected onto the working model.}
 	\item{\code{se_beta}}{The influence function-based estimate of the standard 
 		  error of \code{beta_n}.}
 	\item{\code{ci}}{The confidence interval at the requested level for \code{beta_n}.}
